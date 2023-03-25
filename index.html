@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eightball Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    #container {
+      max-width: 400px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #333;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    
+    label {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+    
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    
+    button {
+      padding: 10px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #555;
+    }
+    
+    #answer {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+	<h1>Ask the Eightball!</h1>
+	<form id="eightball-form">
+		<label for="name-input">Enter your name:</label>
+		<input type="text" id="name-input" name="name"><br><br>
+		<label for="question-input">Ask a yes or no question:</label>
+		<input type="text" id="question-input" name="question"><br><br>
+		<button type="submit">Get answer</button>
+	</form>
+	<div id="answer"></div>
+	<script>
+		const form = document.getElementById("eightball-form");
+		form.addEventListener("submit", function(event) {
+			event.preventDefault();
+			const userName = document.getElementById("name-input").value;
+			const userQuestion = document.getElementById("question-input").value;
+			let randomNumber = Math.floor(Math.random()* 8);
+			let eightBall='';
+			switch (randomNumber){
+				case 0:
+					eightBall = 'It is certain';
+					break;
+				case 1:
+					eightBall = 'It is decidedly so';
+					break;
+				case 2:
+					eightBall = 'Without a doubt';
+					break;
+				case 3:
+					eightBall = 'Yes – definitely';
+					break;
+				case 4:
+					eightBall = 'You may rely on it';
+					break;
+				case 5:
+					eightBall = 'Reply hazy, try again';
+					break;
+				case 6:
+					eightBall = 'Better not tell you now';
+					break;
+				case 7:
+					eightBall = 'My sources say no';
+					break;
+			}
+			const answerDiv = document.getElementById("answer");
+			answerDiv.innerHTML = `<p>Hello ${userName}!</p><p>You asked: ${userQuestion}</p><p>The answer is: ${eightBall}</p>`;
+		});
+	</script>
+</body>
+</html>
